@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detect Tumor</title>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+    <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootst0rap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <h1>Upload Image</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <form action="." method="post"  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+
+                <button type="submit" class="btn btn-lg btn-success">Upload</button>
+            </form>
+
+            {% if obj %}
+            <h3>Succesfully uploaded : {{img_obj.caption}}</h3>
+                <div style="width: 80%; margin: auto">
+                    <img src="{{ obj.image.url}}" alt="image" class="img-thumbnail"  >
+                </div>
+            {% endif %}
+            <hr>
+            </div>
+
+            <div class="col" style="text-align: center">
+                <h1>Result</h1>
+                <h3 id="showImage">
+                    {{ predict.result }}
+                </h3>
+            </div>
+
+        </div>
+    </div>
+
+
+    
+</body>
+</html>

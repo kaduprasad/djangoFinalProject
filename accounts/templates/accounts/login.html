@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html>
+<head>
+<title>Login</title>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootst0rap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<style>
+body {
+
+}
+h1 {
+  color: black;
+    font-family: verdana, serif;
+  font-size: 300%;
+  text-align: center;
+  padding: 20px;
+  margin: 50px;
+}
+
+.center {
+  margin: auto;
+  width: 45%;
+  border: 3px solid #0de3bd;
+  padding: 40px 30px;
+  font-size:110%;
+  background-color: #ffffff;
+}
+
+.center2 {
+  margin: auto;
+  width: 60%;
+  padding: 1px 1px;
+}
+</style>
+
+<body>
+<h1>Login for account</h1>
+
+<div class="center">
+<form action="/accounts/login/" method="post" class="center2">
+    {% csrf_token %}
+
+    <div class="form-group">
+            {{form | crispy  }}
+{#   get the form  #}
+    </div>
+    <input type="submit"  class="btn btn-primary" value="Login" style="padding:5px">
+</form>
+</div>
+</body>
+</html>

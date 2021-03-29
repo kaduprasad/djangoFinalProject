@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% block body %}
+
+{% load crispy_forms_tags %}
+<html>
+<head>
+    <link rel="stylesheet" href="/static/styles.css">
+<title>Sign Up</title>
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootst0rap/4.4.1/js/bootstrap.min.js"></script></head>
+<style>
+
+body {background-color: ;}
+h1 {
+  color: black;
+  font-family: verdana;
+  font-size: 300%;
+  text-align: center;
+  padding: 40px;
+}
+
+.bg-logo{
+  height: 300px;
+  background-size: cover;
+}
+
+
+.center {
+  margin: auto;
+  width: 45%;
+  border: 3px solid cyan;
+    padding: 40px 30px;
+  font-size:110%;
+  background-color: #dfe6e9;
+  border-radius:15px;
+}
+
+.center2 {
+  margin: auto;
+  width: 60%;
+  padding: 1px 1px;
+}
+</style>
+
+<body>
+<div class="" >
+
+    <h1 style="">Signup for account</h1>
+
+ <div class="center">
+
+    <form action = "/accounts/signup/" method = "post" class="center2">
+
+        {% csrf_token %}
+          <div class="form-group">
+            {{form | crispy  }}
+            {{profile_form | crispy}}
+            <small id="emailHelp2" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+
+        <input type="submit"  class="btn btn-primary" value="Signup">
+
+    </form>
+ </div>
+</div>
+</body>
+</html>
+{% endblock %}
