@@ -4,15 +4,13 @@
 {% block content %}
 <style>
 
-
-
 ul {
   padding: 5px;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #99c2ff;
+  background-color: #9464EE;
 }
 
 li {
@@ -25,7 +23,7 @@ li form button {
   text-align: center;
   padding: 16px 18px;
   text-decoration: none;
-  background-color: #4d94ff;
+  background-color: inherit;
   font-family: verdana;
   border: none;
   font-size:110%;
@@ -36,31 +34,7 @@ li form button:hover:not(.active) {
 }
 </style>
 <h1 style="background-image: url('bac2.png');">Home</h1>
-
-<nav>
-    <ul>
-        <li>
-            <form action="/accounts/login/" method="post">
-                {% csrf_token %}
-                <button type="submit">Login</button>
-            </form>
-        </li>
-
-        <li>
-            <form action="/accounts/signup/" method="post">
-                {% csrf_token %}
-                <button type="submit">SignUp</button>
-            </form>
-        </li>
-
-        <li>
-            <form action="/detect/" method="post">
-                {% csrf_token %}
-                <button type="submit">Detection</button>
-            </form>
-        </li>
-    </ul>
-</nav>
+    {% include 'navbar.html' %}
 <br>
 <hr>
 {% endblock %}

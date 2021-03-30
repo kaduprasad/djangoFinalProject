@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static%}
+
+
+{% block navbarw %}
+<style>
+
+.elem {
+  padding: 5px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #9464EE;
+}
+
+li {
+  float: left;
+}
+
+li form button {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px 18px;
+  text-decoration: none;
+  background-color: inherit;
+  font-family: verdana;
+  border: none;
+  font-size:110%;
+}
+
+li form button:hover:not(.active) {
+  background-color: #1a66ff;
+}
+</style>
+
+
+<nav>
+    <ul class="elem">
+        <li>
+            <a class="navbar-brand"  style="text-align: center; padding: 11px 5px; display: block; font-size: 22px;margin-left: 10px;color: var(--white)">Brain Tumor Detection</a>
+        </li>
+        <li>
+            <form action="/accounts/login/" method="post">
+                {% csrf_token %}
+                <button type="submit">Login</button>
+            </form>
+        </li>
+
+        <li>
+            <form action="/accounts/signup/" method="post">
+                {% csrf_token %}
+                <button type="submit">SignUp</button>
+            </form>
+        </li>
+
+        <li>
+            <form action="/detect/" method="post">
+                {% csrf_token %}
+                <button type="submit">Detection</button>
+            </form>
+        </li>
+    </ul>
+</nav>
+
+
+{% endblock %}
