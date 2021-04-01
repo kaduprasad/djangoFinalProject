@@ -20,7 +20,6 @@ decorator==4.4.2
 defusedxml==0.6.0
 Django==3.1.7
 django-crispy-forms==1.11.1
-Eel==0.12.4
 entrypoints==0.3
 flatbuffers==1.12
 future==0.18.2
@@ -76,8 +75,6 @@ pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
 Pygments==2.8.0
-pyinstaller==4.2
-pyinstaller-hooks-contrib==2021.1
 pyparsing==2.4.7
 pyrsistent==0.17.3
 python-dateutil==2.8.1
