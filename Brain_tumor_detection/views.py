@@ -53,7 +53,7 @@ def index(request):
 
 
 def getImagePath():
-    parentPath = 'C:/Users/prasad/PycharmProjects/djangoFinalProject/media/img/'
+    parentPath = '/wwwroot/media/img/'
     imageList = os.listdir(parentPath)
     imageName = imageList[0]
     imagePath = ''
@@ -68,7 +68,7 @@ def getImagePath():
 
 
 def clearFolder():
-    parentPath = 'C:/Users/prasad/PycharmProjects/djangoFinalProject/media/img/'
+    parentPath = '/wwwroot/media/img/'
     filelist = glob.glob(os.path.join(parentPath, "*"))
     for f in filelist:
         os.remove(f)
@@ -77,7 +77,7 @@ def clearFolder():
 
 def testAndDisplayResult():
 
-    model2 = load_model('C:/Users/prasad/PycharmProjects/djangoFinalProject/model/')
+    model2 = load_model('/wwwroot/model/')
 
 
     img_path = getImagePath()
