@@ -43,7 +43,7 @@ def index(request):
         if form.is_valid():
             clearFolder()
             form.save()
-            # testAndDisplayResult()
+            testAndDisplayResult()
             obj = form.instance
             return render(request, "Brain_tumor_detection/detect.html", {"obj": obj, "predict":tumorPrediction })
     else:
