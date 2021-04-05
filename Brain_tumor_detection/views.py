@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import ImageForm
 from .models import getImage
+from django.conf import settings
 
 import numpy as np
 import pandas as pd
