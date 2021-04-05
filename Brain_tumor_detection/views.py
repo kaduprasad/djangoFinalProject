@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .forms import ImageForm
 from .models import getImage
 
-
 import numpy as np
 import pandas as pd
 import os ,glob
@@ -22,13 +21,14 @@ import warnings
 from tensorflow.keras.models import load_model
 warnings.filterwarnings("ignore")
 
+parentFolderRelativePath = settings.BASE_DIR
 
 # Create your views here.
 
 def detect_view(request):
     # logic
-
     return render(request,'Brain_tumor_detection/detect.html')
+
 
 tumorPrediction = {
     "result" : False,
@@ -36,14 +36,13 @@ tumorPrediction = {
 }
 
 
-# Create your views here.
 def index(request):
     if request.method == "POST":
         form = ImageForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             clearFolder()
             form.save()
-            testAndDisplayResult()
+            # testAndDisplayResult()
             obj = form.instance
             return render(request, "Brain_tumor_detection/detect.html", {"obj": obj, "predict":tumorPrediction })
     else:
@@ -53,31 +52,42 @@ def index(request):
 
 
 def getImagePath():
-    parentPath = '/wwwroot/media/img/'
-    imageList = os.listdir(parentPath)
+    # parentPath = 'C:/Users/prasad/PycharmProjects/djangoFinalProject/media/img/'
+    imageFolder = os.path.join(parentFolderRelativePath, 'media/img/')
+
+    imageList = os.listdir(imageFolder)
     imageName = imageList[0]
     imagePath = ''
 
     if len(imageList) == 0: # check for empty folder
         print("Folder is Empty")
     else:
-        imagePath = os.path.join(parentPath, imageName)
+        imagePath = os.path.join(imageFolder, imageName)
         print(imagePath)
 
     return imagePath
 
 
 def clearFolder():
-    parentPath = '/wwwroot/media/img/'
-    filelist = glob.glob(os.path.join(parentPath, "*"))
+    # parentPath = 'C:/Users/prasad/PycharmProjects/djangoFinalProject/media/img/'
+
+    imgFolder = os.path.join(parentFolderRelativePath, 'media/img/')
+    filelist = glob.glob(os.path.join(imgFolder, "*")) # to get all images inside folder
     for f in filelist:
         os.remove(f)
 
+# def copyImage():
+#     destination = 'Brain_tumor_detection/templates/Brain_tumor_detection/'
+#     shutil.copy(getImagePath(), destination)
 
 
 def testAndDisplayResult():
 
-    model2 = load_model('/wwwroot/model/')
+    # model2 = load_model('C:/Users/prasad/PycharmProjects/djangoFinalProject/model/')
+
+    modelFolder = os.path.join(parentFolderRelativePath, 'model/')
+    model2 = load_model(modelFolder)
+    # copyImage()
 
 
     img_path = getImagePath()
@@ -109,6 +119,7 @@ def testAndDisplayResult():
 
     tumorPrediction["percent_accuracy"] = accuracy_percent
     print(prediction)
+
 
 def getPrediction():
     return tumorPrediction
