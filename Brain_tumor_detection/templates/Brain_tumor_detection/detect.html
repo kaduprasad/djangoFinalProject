@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,5 +45,65 @@
 
 
     
+</body>
+</html>
+ -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Detect Tumor</title>
+</head>
+<body>
+
+  <h1>Upload Image</h1>
+  {% include 'navbar.html' %}
+  <br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            <form action="." method="post"  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+
+                <button type="submit" class="btn btn-lg btn-success">Upload</button>
+            </form>
+
+            {% if obj %}
+            <h3>Succesfully uploaded : {{obj.caption}}</h3>
+                <div style="width: 100%; margin: auto">
+                    <img src="{{ obj.image.url}}" alt="image" class="img-thumbnail"  >
+<!-- {#                    <img src="abc.jpg" alt="image" class="img-thumbnail" >#} -->
+                </div>
+            {% endif %}
+            <hr>
+            </div>
+
+            <div class="col" style="text-align: center">
+                <h1>Result</h1>
+                <div id="showImage">
+<!-- {#                    {{ predict.result }}#} -->
+
+                    {% if predict.result == True %}
+                        <h3>This image Is <span style="color: #f64c4c">Tumorous</span>.</h3>
+
+                    {% elif predict.result == False %}
+
+                        <h3>This image Is <span style="color: #34ce57">Non Tumorous</span>.</h3>
+
+                    {% endif %}
+
+                </div>
+                <br><hr>
+                <h3 id="showAccuracyPercent">
+                    {{ predict.percent_accuracy }} %
+                </h3>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
